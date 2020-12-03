@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: tan;" xmlns="http://javafx.com/javafx/8"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Controller">
+    <children>
+        <TableView id="tbl_book" layoutX="14.0" layoutY="14.0" prefHeight="279.0" prefWidth="1170.0">
+            <columns>
+                <TableColumn text="Mã sách"/>
+                <TableColumn prefWidth="318.0" text="Tên sách"/>
+                <TableColumn prefWidth="241.0" text="Tác giả"/>
+                <TableColumn prefWidth="181.0" text="Nhà xuất bản"/>
+                <TableColumn prefWidth="142.0" text="Thể loại"/>
+                <TableColumn prefWidth="102.0" text="Năm xuất bản"/>
+                <TableColumn prefWidth="104.0" text="Số lượng"/>
+            </columns>
+        </TableView>
+        <Button layoutX="1037.0" layoutY="723.0" mnemonicParsing="false" onAction="#showWindow0" prefHeight="49.0"
+                prefWidth="112.0" text="BACK">
+            <font>
+                <Font name="Calibri Bold" size="18.0"/>
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
+        </Button>
+        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="744.0" layoutY="384.0" prefHeight="45.0"
+               prefWidth="156.0" style="-fx-border-color: green; -fx-background-color: yellow;" text="TÌM KIẾM">
+            <font>
+                <Font name="Calibri Bold" size="35.0"/>
+            </font>
+            <padding>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+            </padding>
+        </Label>
+        <Button layoutX="748.0" layoutY="546.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="149.0"
+                style="-fx-background-color: #B0E2FF; -fx-border-color: green;" text="Tìm" textFill="RED">
+            <font>
+                <Font name="Times New Roman Bold" size="25.0"/>
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
+        </Button>
+        <Label layoutX="33.0" layoutY="327.0" prefHeight="45.0" prefWidth="163.0"
+               style="-fx-background-color: yellow; -fx-border-color: green;" text="Tên sách" textFill="BLUE"
+               wrapText="true">
+            <effect>
+                <Blend/>
+            </effect>
+            <font>
+                <Font name="Sitka Text Bold" size="21.0"/>
+            </font>
+            <padding>
+                <Insets bottom="5.0" left="10.0" right="5.0" top="5.0"/>
+            </padding>
+        </Label>
+        <TextField layoutX="203.0" layoutY="327.0" prefHeight="45.0" prefWidth="337.0"
+                   style="-fx-border-color: green;"/>
+        <TextField layoutX="696.0" layoutY="468.0" prefHeight="45.0" prefWidth="288.0"
+                   style="-fx-border-color: green;"/>
+        <TextField layoutX="203.0" layoutY="397.0" prefHeight="45.0" prefWidth="337.0"
+                   style="-fx-border-color: green;"/>
+        <Label layoutX="33.0" layoutY="397.0" prefHeight="45.0" prefWidth="163.0"
+               style="-fx-background-color: yellow; -fx-border-color: green;" text="Tác giả" textFill="BLUE"
+               wrapText="true">
+            <effect>
+                <Blend/>
+            </effect>
+            <font>
+                <Font name="Sitka Text Bold" size="21.0"/>
+            </font>
+            <padding>
+                <Insets bottom="5.0" left="10.0" right="5.0" top="5.0"/>
+            </padding>
+        </Label>
+        <TextField layoutX="202.0" layoutY="467.0" prefHeight="45.0" prefWidth="337.0"
+                   style="-fx-border-color: green;"/>
+        <Label layoutX="33.0" layoutY="467.0" prefHeight="45.0" prefWidth="163.0"
+               style="-fx-background-color: yellow; -fx-border-color: green;" text="Nhà xuất bản" textFill="BLUE"
+               wrapText="true">
+            <effect>
+                <Blend/>
+            </effect>
+            <font>
+                <Font name="Sitka Text Bold" size="21.0"/>
+            </font>
+            <padding>
+                <Insets bottom="5.0" left="10.0" right="5.0" top="5.0"/>
+            </padding>
+        </Label>
+        <TextField layoutX="202.0" layoutY="537.0" prefHeight="45.0" prefWidth="337.0"
+                   style="-fx-border-color: green;"/>
+        <Label layoutX="33.0" layoutY="537.0" prefHeight="45.0" prefWidth="163.0"
+               style="-fx-background-color: yellow; -fx-border-color: green;" text="Tên sách" textFill="BLUE"
+               wrapText="true">
+            <effect>
+                <Blend/>
+            </effect>
+            <font>
+                <Font name="Sitka Text Bold" size="21.0"/>
+            </font>
+            <padding>
+                <Insets bottom="5.0" left="10.0" right="5.0" top="5.0"/>
+            </padding>
+        </Label>
+        <TextField layoutX="202.0" layoutY="607.0" prefHeight="45.0" prefWidth="337.0"
+                   style="-fx-border-color: green;"/>
+        <Label layoutX="33.0" layoutY="607.0" prefHeight="45.0" prefWidth="163.0"
+               style="-fx-background-color: yellow; -fx-border-color: green;" text="Tên sách" textFill="BLUE"
+               wrapText="true">
+            <effect>
+                <Blend/>
+            </effect>
+            <font>
+                <Font name="Sitka Text Bold" size="21.0"/>
+            </font>
+            <padding>
+                <Insets bottom="5.0" left="10.0" right="5.0" top="5.0"/>
+            </padding>
+        </Label>
+        <Label layoutX="33.0" layoutY="677.0" prefHeight="45.0" prefWidth="163.0"
+               style="-fx-background-color: yellow; -fx-border-color: green;" text="Tên sách" textFill="BLUE"
+               wrapText="true">
+            <effect>
+                <Blend/>
+            </effect>
+            <font>
+                <Font name="Sitka Text Bold" size="21.0"/>
+            </font>
+            <padding>
+                <Insets bottom="5.0" left="10.0" right="5.0" top="5.0"/>
+            </padding>
+        </Label>
+        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="578.0" layoutY="468.0" prefHeight="45.0"
+               prefWidth="93.0" style="-fx-border-color: green; -fx-background-color: yellow;" text="Từ khóa"
+               textFill="BLUE">
+            <font>
+                <Font name="Times New Roman Bold" size="21.0"/>
+            </font>
+            <padding>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+            </padding>
+        </Label>
+        <Button layoutX="1019.0" layoutY="327.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="149.0"
+                style="-fx-background-color: #B0E2FF; -fx-border-color: green;" text="Thêm" textFill="RED">
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
+            <font>
+                <Font name="Times New Roman Bold" size="25.0"/>
+            </font>
+        </Button>
+        <Button layoutX="1019.0" layoutY="407.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="149.0"
+                style="-fx-background-color: #B0E2FF; -fx-border-color: green;" text="Sửa" textFill="RED">
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
+            <font>
+                <Font name="Times New Roman Bold" size="25.0"/>
+            </font>
+        </Button>
+        <Button layoutX="1018.0" layoutY="487.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="149.0"
+                style="-fx-background-color: #B0E2FF; -fx-border-color: green;" text="Lưu" textFill="RED">
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
+            <font>
+                <Font name="Times New Roman Bold" size="25.0"/>
+            </font>
+        </Button>
+        <Button layoutX="1018.0" layoutY="567.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="149.0"
+                style="-fx-background-color: #B0E2FF; -fx-border-color: green;" text="Xóa" textFill="RED">
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
+            <font>
+                <Font name="Times New Roman Bold" size="25.0"/>
+            </font>
+        </Button>
+        <Button layoutX="1018.0" layoutY="647.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="149.0"
+                style="-fx-background-color: #B0E2FF; -fx-border-color: green;" text="Hủy" textFill="RED">
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
+            <font>
+                <Font name="Times New Roman Bold" size="25.0"/>
+            </font>
+        </Button>
+        <ChoiceBox layoutX="252.0" layoutY="677.0" prefHeight="45.0" prefWidth="240.0"/>
+    </children>
+</AnchorPane>
