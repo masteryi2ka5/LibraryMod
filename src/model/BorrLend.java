@@ -2,7 +2,7 @@ package model;
 
 import java.time.LocalDate;
 
-public class BorrLend {
+public class BorrLend implements Comparable<BorrLend>{
     private String maMT;
     private String maDG;
     private String maTT;
@@ -17,6 +17,9 @@ public class BorrLend {
         this.ngayMuon = ngayMuon;
         this.ngayHenTra = ngayHenTra;
         this.tienCoc = tienCoc;
+    }
+
+    public BorrLend() {
     }
 
     public String getMaMT() {
@@ -65,5 +68,10 @@ public class BorrLend {
 
     public void setTienCoc(int tienCoc) {
         this.tienCoc = tienCoc;
+    }
+
+    @Override
+    public int compareTo(BorrLend b) {
+        return this.getMaMT().compareTo(b.getMaMT());
     }
 }

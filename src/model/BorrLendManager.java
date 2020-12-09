@@ -21,7 +21,7 @@ public class BorrLendManager {
         ResultSet selSet = stm.executeQuery(selQuery);
         ArrayList selBorrLendList = new ArrayList();
 
-        while(selSet.next()) {
+        while (selSet.next()) {
             String borrLendID = selSet.getString("MaMT");
             String readerID = selSet.getString("MaDG");
             String librarianID = selSet.getString("MaTT");

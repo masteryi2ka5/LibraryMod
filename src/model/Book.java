@@ -1,22 +1,26 @@
 package model;
 
-public class Book {
+public class Book implements Comparable<Book> {
     private String maSach;
     private String tenSach;
     private String tacGia;
     private String nhaXB;
     private int namXB;
     private int donGia;
-    private int soLuong;
+    private String gioiThieu;
 
-    public Book(String maSach, String tenSach, String tacGia, String nhaXB, int namXB, int donGia, int soLuong) {
+    public Book(String maSach, String tenSach, String tacGia, String nhaXB, int namXB, int donGia, String gioiThieu) {
         this.maSach = maSach;
         this.tenSach = tenSach;
         this.tacGia = tacGia;
         this.nhaXB = nhaXB;
         this.namXB = namXB;
         this.donGia = donGia;
-        this.soLuong = soLuong;
+        this.gioiThieu = gioiThieu;
+    }
+
+    public Book() {
+
     }
 
     public String getMaSach() {
@@ -67,11 +71,16 @@ public class Book {
         this.donGia = donGia;
     }
 
-    public int getSoLuong() {
-        return this.soLuong;
+    public String getGioiThieu() {
+        return this.gioiThieu;
     }
 
-    public void setSoLuong(int soLuong) {
-        this.soLuong = soLuong;
+    public void setGioiThieu(String soLuong) {
+        this.gioiThieu = soLuong;
+    }
+
+    @Override
+    public int compareTo(Book b) {
+        return this.getMaSach().compareTo(b.getMaSach());
     }
 }

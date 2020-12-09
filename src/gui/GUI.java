@@ -26,22 +26,21 @@ public class GUI extends Application {
         try {
             window = primaryStage;
             window.setTitle("Quản lý thư viện - Lê Nhật Nam - 20183956");
-            root0 = (Parent) FXMLLoader.load(this.getClass().getResource("/gui/GUI0.fxml"));
+            root0 = FXMLLoader.load(this.getClass().getResource("/gui/GUI0.fxml"));
             scene0 = new Scene(root0);
             window.setScene(scene0);
             window.show();
-            root1 = (Parent)FXMLLoader.load(this.getClass().getResource("/gui/GUI1.fxml"));
+            root1 = FXMLLoader. load(this.getClass().getResource("/gui/GUI1.fxml"));
             scene1 = new Scene(root1);
-            root2 = (Parent)FXMLLoader.load(this.getClass().getResource("/gui/GUI2.fxml"));
+            root2 = FXMLLoader.load(this.getClass().getResource("/gui/GUI2.fxml"));
             scene2 = new Scene(root2);
-            root3 = (Parent)FXMLLoader.load(this.getClass().getResource("/gui/GUI3.fxml"));
+            root3 = FXMLLoader.load(this.getClass().getResource("/gui/GUI3.fxml"));
             scene3 = new Scene(root3);
-            root4 = (Parent)FXMLLoader.load(this.getClass().getResource("/gui/GUI4.fxml"));
+            root4 = FXMLLoader.load(this.getClass().getResource("/gui/GUI4.fxml"));
             scene4 = new Scene(root4);
-        } catch (Exception var3) {
-            var3.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-
     }
 
     public static void main(String[] args) {

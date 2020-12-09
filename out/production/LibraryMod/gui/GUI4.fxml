@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
 <?import javafx.scene.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.effect.*?>
@@ -9,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 
 <AnchorPane prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: tan;" xmlns="http://javafx.com/javafx/8"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Controller">
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Controller0">
     <children>
         <TableView id="tbl_book" layoutX="14.0" layoutY="14.0" prefHeight="279.0" prefWidth="1170.0">
             <columns>
