@@ -7,43 +7,43 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class LibrarianManager {
+public class ReaderManager {
     private DBConnection dbConnection = new DBConnection();
     public Connection cnn;
-    public String librarianFileURL;
+    public String readerFileURL;
     public String saverURL;
 
-    public LibrarianManager() {
+    public ReaderManager() {
         this.cnn = this.dbConnection.getConnection();
     }
 
-    public ArrayList<Librarian> selectLibrarian() throws SQLException {
+    public ArrayList<Reader> selectReader() throws SQLException {
         Statement stm = this.cnn.createStatement();
-        String selQuery = "SELECT * FROM dbo.ThuThu";
+        String selQuery = "SELECT * FROM dbo.DocGia";
         ResultSet selSet = stm.executeQuery(selQuery);
-        ArrayList selLibrarianList = new ArrayList();
+        ArrayList selReaderList = new ArrayList();
 
         while (selSet.next()) {
-            String maTT = selSet.getString("MaTT");
-            String tenTT = selSet.getString("TenTT");
+            String maDG = selSet.getString("MaDG");
+            String tenDG = selSet.getString("TenDG");
             String gioiTinh = selSet.getString("GioiTinh");
             LocalDate ngaySinh = selSet.getDate("NgaySinh").toLocalDate();
             String CMND = selSet.getString("CMND");
             String email = selSet.getString("Email");
             String dienThoai = selSet.getString("DienThoai");
-            Librarian l = new Librarian(maTT, tenTT, gioiTinh, ngaySinh, CMND, email, dienThoai);
-            selLibrarianList.add(l);
+            Reader l = new Reader(maDG, tenDG, gioiTinh, ngaySinh, CMND, email, dienThoai);
+            selReaderList.add(l);
         }
 
-        return selLibrarianList;
+        return selReaderList;
     }
 
-    public boolean addLibrarian(Librarian l) {
+    public boolean addReader(Reader l) {
         String insQuery = "INSERT INTO dbo.ThuThu VALUES(?, ?, ?, ?, ?, ?, ?)";
         try {
             PreparedStatement pstm = this.cnn.prepareStatement(insQuery);
-            pstm.setString(1, l.getMaTT());
-            pstm.setString(2, l.getTenTT());
+            pstm.setString(1, l.getMaDG());
+            pstm.setString(2, l.getTenDG());
             pstm.setString(3, l.getGioiTinh());
             pstm.setDate(4, Date.valueOf(l.getNgaySinh()));
             pstm.setString(5, l.getCMND());
@@ -57,11 +57,11 @@ public class LibrarianManager {
         }
     }
 
-    public boolean updateLibrarian(Librarian b) {
-        String updQuery = "UPDATE dbo.ThuThu SET MaTT='" + b.getMaTT() + "', TenTT=N'" + b.getTenTT()
+    public boolean updateReader(Reader b) {
+        String updQuery = "UPDATE dbo.DocGia SET MaDG='" + b.getMaDG() + "', TenDG=N'" + b.getTenDG()
                 + "', GioiTinh=N'" + b.getGioiTinh() + "', NgaySinh='" + b.getNgaySinh().toString() + "', CMND='" + b.getCMND()
-                + "', Email='" + b.getEmail() + "', DienThoai='" + b.getDienThoai() + "' WHERE MaTT='"
-                + b.getMaTT() + "'";
+                + "', Email='" + b.getEmail() + "', DienThoai='" + b.getDienThoai() + "' WHERE MaDG='"
+                + b.getMaDG() + "'";
         try {
             PreparedStatement pstm = this.cnn.prepareStatement(updQuery);
             pstm.execute();
@@ -72,8 +72,8 @@ public class LibrarianManager {
         }
     }
 
-    public boolean deleteLibrarian(Librarian b) {
-        String delQuery = "DELETE FROM dbo.ThuThu WHERE maTT='" + b.getMaTT() + "'";
+    public boolean deleteReader(Reader b) {
+        String delQuery = "DELETE FROM dbo.ThuThu WHERE maDG='" + b.getMaDG() + "'";
         try {
             PreparedStatement pstm = cnn.prepareStatement(delQuery);
             pstm.execute();
@@ -84,23 +84,23 @@ public class LibrarianManager {
         }
     }
 
-    public ArrayList<Librarian> insertLibrarianByFile() {
+    public ArrayList<Reader> insertReaderByFile() {
         BufferedReader br = null;
-        ArrayList<Librarian> insertList = new ArrayList<>();
+        ArrayList<Reader> insertList = new ArrayList<>();
         try {
-            br = new BufferedReader(new FileReader(librarianFileURL));
-            String maTT, tenTT, gioiTinh, CMND, email, dienThoai;
+            br = new BufferedReader(new FileReader(readerFileURL));
+            String maDG, tenDG, gioiTinh, CMND, email, dienThoai;
             LocalDate ngaySinh;
             int n = Integer.parseInt(br.readLine());
             for (int i = 0; i < n; i++) {
-                maTT = br.readLine();
-                tenTT = br.readLine();
+                maDG = br.readLine();
+                tenDG = br.readLine();
                 gioiTinh = br.readLine();
                 ngaySinh = LocalDate.parse(br.readLine());
                 CMND = br.readLine();
                 email = br.readLine();
                 dienThoai = br.readLine();
-                Librarian tmp = new Librarian(maTT, tenTT, gioiTinh, ngaySinh, CMND, email, dienThoai);
+                Reader tmp = new Reader(maDG, tenDG, gioiTinh, ngaySinh, CMND, email, dienThoai);
                 insertList.add(tmp);
             }
         } catch (IOException e) {

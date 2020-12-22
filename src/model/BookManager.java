@@ -1,11 +1,19 @@
 package model;
 
+import gui.Controller0;
+import gui.Controller1;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 
 public class BookManager {
     private DBConnection dbConnection = new DBConnection();
     public Connection cnn;
+    public String bookFileURL;
+    public String saverURL;
 
     public BookManager() {
         this.cnn = this.dbConnection.getConnection();
@@ -16,7 +24,7 @@ public class BookManager {
         String selQuery = "SELECT * FROM dbo.Sach";
         ResultSet selSet = stm.executeQuery(selQuery);
         ArrayList selBookList = new ArrayList();
-        while(selSet.next()) {
+        while (selSet.next()) {
             String bookID = selSet.getString("MaSach");
             String bookName = selSet.getString("TenSach");
             String author = selSet.getString("TacGia");
@@ -27,7 +35,6 @@ public class BookManager {
             Book b = new Book(bookID, bookName, author, publisher, publishYear, price, intro);
             selBookList.add(b);
         }
-
         return selBookList;
     }
 
@@ -51,9 +58,9 @@ public class BookManager {
     }
 
     public boolean updateBook(Book b) {
-        String updQuery = "UPDATE dbo.Sach SET maSach='" + b.getMaSach() + "', tenSach=N'" + b.getTenSach()
-                + "', tacGia=N'" + b.getTacGia() + "', nhaXB=N'" + b.getNhaXB() + "', namXB=" + b.getNamXB()
-                + ", donGia=" + b.getDonGia() + ", gioiThieu=N'" + b.getGioiThieu() + "' WHERE maSach='"
+        String updQuery = "UPDATE dbo.Sach SET MaSach='" + b.getMaSach() + "', TenSach=N'" + b.getTenSach()
+                + "', TacGia=N'" + b.getTacGia() + "', NhaXB=N'" + b.getNhaXB() + "', NamXB=" + b.getNamXB()
+                + ", DonGia=" + b.getDonGia() + ", GioiThieu=N'" + b.getGioiThieu() + "' WHERE MaSach='"
                 + b.getMaSach() + "'";
         try {
             PreparedStatement pstm = this.cnn.prepareStatement(updQuery);
@@ -66,7 +73,7 @@ public class BookManager {
     }
 
     public boolean deleteBook(Book b) {
-        String delQuery = "DELETE FROM dbo.Sach WHERE maSach='" + b.getMaSach() + "'";
+        String delQuery = "DELETE FROM dbo.Sach WHERE MaSach='" + b.getMaSach() + "'";
         try {
             PreparedStatement pstm = cnn.prepareStatement(delQuery);
             pstm.execute();
@@ -74,6 +81,37 @@ public class BookManager {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
             return false;
+        }
+    }
+
+    public ArrayList<Book> insertBookByFile() {
+        BufferedReader br = null;
+        ArrayList<Book> insertList = new ArrayList<>();
+        try {
+            br = new BufferedReader(new FileReader(bookFileURL));
+            String maSach, tenSach, tagGia, nhaXB, gioiThieu;
+            int namXB, donGia;
+            int n = Integer.parseInt(br.readLine());
+            for (int i = 0; i < n; i++) {
+                maSach = br.readLine();
+                tenSach = br.readLine();
+                tagGia = br.readLine();
+                nhaXB = br.readLine();
+                namXB = Integer.parseInt(br.readLine());
+                donGia = Integer.parseInt(br.readLine());
+                gioiThieu = br.readLine();
+                Book tmp = new Book(maSach, tenSach, tagGia, nhaXB, namXB, donGia, gioiThieu);
+                insertList.add(tmp);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                br.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return insertList;
         }
     }
 }

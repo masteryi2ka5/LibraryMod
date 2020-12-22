@@ -30,7 +30,7 @@ public class GUI extends Application {
             scene0 = new Scene(root0);
             window.setScene(scene0);
             window.show();
-            root1 = FXMLLoader. load(this.getClass().getResource("/gui/GUI1.fxml"));
+            root1 = FXMLLoader.load(this.getClass().getResource("/gui/GUI1.fxml"));
             scene1 = new Scene(root1);
             root2 = FXMLLoader.load(this.getClass().getResource("/gui/GUI2.fxml"));
             scene2 = new Scene(root2);

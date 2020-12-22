@@ -16,25 +16,25 @@ import java.util.*;
 
 public class Controller3 implements Initializable {
     @FXML
-    private TableView<Librarian> tableViewLibrarian = new TableView();
+    private TableView<Reader> tableViewReader = new TableView();
     @FXML
-    private TableColumn<Librarian, String> maTT = new TableColumn();
+    private TableColumn<Reader, String> maDG = new TableColumn();
     @FXML
-    private TableColumn<Librarian, String> tenTT = new TableColumn();
+    private TableColumn<Reader, String> tenDG = new TableColumn();
     @FXML
-    private TableColumn<Librarian, String> gioiTinh = new TableColumn();
+    private TableColumn<Reader, String> gioiTinh = new TableColumn();
     @FXML
-    private TableColumn<Librarian, String> ngaySinh = new TableColumn();
+    private TableColumn<Reader, String> ngaySinh = new TableColumn();
     @FXML
-    private TableColumn<Librarian, Integer> CMND = new TableColumn();
+    private TableColumn<Reader, Integer> CMND = new TableColumn();
     @FXML
-    private TableColumn<Librarian, Integer> email = new TableColumn();
+    private TableColumn<Reader, Integer> email = new TableColumn();
     @FXML
-    private TableColumn<Librarian, String> dienThoai = new TableColumn();
+    private TableColumn<Reader, String> dienThoai = new TableColumn();
     @FXML
-    private TextField librarianID = new TextField();
+    private TextField readerID = new TextField();
     @FXML
-    private TextField librarianName = new TextField();
+    private TextField readerName = new TextField();
     @FXML
     private TextField gender = new TextField();
     @FXML
@@ -46,7 +46,7 @@ public class Controller3 implements Initializable {
     @FXML
     private TextField phoneNum = new TextField();
     @FXML
-    private TextField librarianKeyword = new TextField();
+    private TextField readerKeyword = new TextField();
 
     public Controller3() {
     }
@@ -56,77 +56,77 @@ public class Controller3 implements Initializable {
         GUI.window.show();
     }
 
-    private ArrayList<Librarian> selLibrarianList;
-    private ObservableList<Librarian> librarianList = FXCollections.observableArrayList();
-    private ObservableList<Librarian> librarianSearchList = FXCollections.observableArrayList();
-    private LibrarianManager librarianManager = new LibrarianManager();
-    private Librarian mainLibrarian = new Librarian();
+    private ArrayList<Reader> selReaderList;
+    private ObservableList<Reader> readerList = FXCollections.observableArrayList();
+    private ObservableList<Reader> readerSearchList = FXCollections.observableArrayList();
+    private ReaderManager readerManager = new ReaderManager();
+    private Reader mainReader = new Reader();
 
     public void search() {
-        librarianSearchList.clear();
-        String keyword = librarianKeyword.getText();
-        for (int i = 0; i < librarianList.size(); i++) {
-            Librarian tmp = librarianList.get(i);
-            if (tmp.getMaTT().contains(keyword) || tmp.getTenTT().contains(keyword)
+        readerSearchList.clear();
+        String keyword = readerKeyword.getText();
+        for (int i = 0; i < readerList.size(); i++) {
+            Reader tmp = readerList.get(i);
+            if (tmp.getMaDG().contains(keyword) || tmp.getTenDG().contains(keyword)
                     || tmp.getGioiTinh().contains(keyword) || tmp.getCMND().contains(keyword)
                     || tmp.getEmail().contains(keyword) || tmp.getDienThoai().contains(keyword))
-                librarianSearchList.add(tmp);
+                readerSearchList.add(tmp);
         }
-        if (librarianSearchList.isEmpty()) {
+        if (readerSearchList.isEmpty()) {
             (new Controller0()).setAlert("Không tìm thấy kết quả nào!");
-            updateLibrarianTable();
+            updateReaderTable();
         }
         else {
-            Collections.sort(librarianSearchList);
-            maTT.setCellValueFactory(new PropertyValueFactory("maTT"));
-            tenTT.setCellValueFactory(new PropertyValueFactory("tenTT"));
+            Collections.sort(readerSearchList);
+            maDG.setCellValueFactory(new PropertyValueFactory("maTT"));
+            tenDG.setCellValueFactory(new PropertyValueFactory("tenTT"));
             gioiTinh.setCellValueFactory(new PropertyValueFactory("gioiTinh"));
             ngaySinh.setCellValueFactory(new PropertyValueFactory("ngaySinh"));
             CMND.setCellValueFactory(new PropertyValueFactory("CMND"));
             email.setCellValueFactory(new PropertyValueFactory("email"));
             dienThoai.setCellValueFactory(new PropertyValueFactory("dienThoai"));
-            tableViewLibrarian.setItems(this.librarianSearchList);
+            tableViewReader.setItems(this.readerSearchList);
         }
-        librarianKeyword.setText("");
+        readerKeyword.setText("");
     }
 
-    public void addNewLibrarian() {
-        Librarian tmp = getLibrarianInfo();
-        if (librarianManager.addLibrarian(tmp)) {
-            librarianList.add(tmp);
-            tableViewLibrarian.setItems(librarianList);
-            updateLibrarianTable();
-            clearLibrarianInfo();
+    public void addNewReader() {
+        Reader tmp = getReaderInfo();
+        if (readerManager.addReader(tmp)) {
+            readerList.add(tmp);
+            tableViewReader.setItems(readerList);
+            updateReaderTable();
+            clearReaderInfo();
             (new Controller0()).setAlert("Thêm thành công!");
         } else
             (new Controller0()).setAlert("Thêm thất bại! Mời kiểm tra lại dữ liệu!");
-        this.clearLibrarianInfo();
+        this.clearReaderInfo();
     }
 
-    public void updateLibrarian() {
-        Librarian tmp = getLibrarianInfo();
-        if (librarianManager.updateLibrarian(tmp)) {
+    public void updateReader() {
+        Reader tmp = getReaderInfo();
+        if (readerManager.updateReader(tmp)) {
             int i = 0;
-            while (!librarianList.get(i).getMaTT().equals(tmp.getMaTT()))
+            while (!readerList.get(i).getMaDG().equals(tmp.getMaDG()))
                 i++;
-            librarianList.set(i, tmp);
-            updateLibrarianTable();
-            clearLibrarianInfo();
+            readerList.set(i, tmp);
+            updateReaderTable();
+            clearReaderInfo();
             (new Controller0()).setAlert("Sửa thành công!");
         } else
             (new Controller0()).setAlert("Sửa thất bại");
     }
 
-    public void deleteLibrarian() {
+    public void deleteReader() {
         boolean choice = (new Controller0()).setConfirm("Bạn có chắc chắn muốn xóa không?");
         if (choice) {
-            if (librarianManager.deleteLibrarian(mainLibrarian)) {
-                for (int i = 0; i < librarianList.size(); i++) {
-                    if (librarianList.get(i).getMaTT().equals(mainLibrarian.getMaTT()))
-                        librarianList.remove(i);
+            if (readerManager.deleteReader(mainReader)) {
+                for (int i = 0; i < readerList.size(); i++) {
+                    if (readerList.get(i).getMaDG().equals(mainReader.getMaDG()))
+                        readerList.remove(i);
                 }
-                updateLibrarianTable();
-                clearLibrarianInfo();
+                updateReaderTable();
+                clearReaderInfo();
                 (new Controller0()).setAlert("Xóa thành công!");
             }
             else
@@ -134,73 +134,73 @@ public class Controller3 implements Initializable {
         }
     }
 
-    public void cancelLibrarian() {
-        clearLibrarianInfo();
+    public void cancelReader() {
+        clearReaderInfo();
     }
 
-    public void getSelectedLibrarian() {
-        tableViewLibrarian.setOnMouseClicked(e -> {
-            mainLibrarian = tableViewLibrarian.getSelectionModel().getSelectedItem();
-            librarianID.setText(mainLibrarian.getMaTT());
-            librarianName.setText(mainLibrarian.getTenTT());
-            gender.setText(mainLibrarian.getGioiTinh());
-            birthday.setValue(mainLibrarian.getNgaySinh());
-            card.setText(String.valueOf(mainLibrarian.getCMND()));
-            mail.setText(String.valueOf(mainLibrarian.getEmail()));
-            phoneNum.setText(mainLibrarian.getDienThoai());
+    public void getSelectedReader() {
+        tableViewReader.setOnMouseClicked(e -> {
+            mainReader = tableViewReader.getSelectionModel().getSelectedItem();
+            readerID.setText(mainReader.getMaDG());
+            readerName.setText(mainReader.getTenDG());
+            gender.setText(mainReader.getGioiTinh());
+            birthday.setValue(mainReader.getNgaySinh());
+            card.setText(String.valueOf(mainReader.getCMND()));
+            mail.setText(String.valueOf(mainReader.getEmail()));
+            phoneNum.setText(mainReader.getDienThoai());
         });
     }
 
-    void updateLibrarianTable() {
-        Collections.sort(librarianList);
-        maTT.setCellValueFactory(new PropertyValueFactory("maTT"));
-        tenTT.setCellValueFactory(new PropertyValueFactory("tenTT"));
+    void updateReaderTable() {
+        Collections.sort(readerList);
+        maDG.setCellValueFactory(new PropertyValueFactory("maDG"));
+        tenDG.setCellValueFactory(new PropertyValueFactory("tenDG"));
         gioiTinh.setCellValueFactory(new PropertyValueFactory("gioiTinh"));
         ngaySinh.setCellValueFactory(new PropertyValueFactory("ngaySinh"));
         CMND.setCellValueFactory(new PropertyValueFactory("CMND"));
         email.setCellValueFactory(new PropertyValueFactory("email"));
         dienThoai.setCellValueFactory(new PropertyValueFactory("dienThoai"));
-        tableViewLibrarian.setItems(this.librarianList);
+        tableViewReader.setItems(this.readerList);
     }
 
-    Librarian getLibrarianInfo() {
-        String ma_sach = librarianID.getText();
-        String ten_sach = librarianName.getText();
+    Reader getReaderInfo() {
+        String ma_doc_gia = readerID.getText();
+        String ten_doc_gia = readerName.getText();
         String gioi_tinh = gender.getText();
         LocalDate ngay_sinh = birthday.getValue();
         String CMND = card.getText();
         String email = mail.getText();
         String dien_thoai = phoneNum.getText();
-        Librarian tmp = new Librarian(ma_sach, ten_sach, gioi_tinh, ngay_sinh, CMND, email, dien_thoai);
-        updateLibrarianTable();
+        Reader tmp = new Reader(ma_doc_gia, ten_doc_gia, gioi_tinh, ngay_sinh, CMND, email, dien_thoai);
+        updateReaderTable();
         return tmp;
     }
 
-    void clearLibrarianInfo() {
-        librarianID.setText("");
-        librarianName.setText("");
+    void clearReaderInfo() {
+        readerID.setText("");
+        readerName.setText("");
         gender.setText("");
         birthday.setValue(null);
         card.setText("");
         mail.setText("");
         phoneNum.setText("");
-        updateLibrarianTable();
+        updateReaderTable();
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Iterator var3;
         try {
-            selLibrarianList = librarianManager.selectLibrarian();
-            var3 = selLibrarianList.iterator();
+            selReaderList = readerManager.selectReader();
+            var3 = selReaderList.iterator();
             while (var3.hasNext()) {
-                Librarian l = (Librarian) var3.next();
-                librarianList.add(l);
+                Reader l = (Reader) var3.next();
+                readerList.add(l);
             }
         } catch (SQLException var6) {
             var6.printStackTrace();
         }
-        updateLibrarianTable();
-        getSelectedLibrarian();
+        updateReaderTable();
+        getSelectedReader();
     }
 }

@@ -11,11 +11,6 @@ public class Controller0 implements Initializable {
     public Controller0() {
     }
 
-    public void showWindow0(ActionEvent event) {
-        GUI.window.setScene(GUI.scene0);
-        GUI.window.show();
-    }
-
     public void showWindow1(ActionEvent event) {
         GUI.window.setScene(GUI.scene1);
         GUI.window.show();

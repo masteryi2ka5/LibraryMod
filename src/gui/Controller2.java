@@ -9,6 +9,10 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.BorrLend;
 import model.BorrLendManager;
+import model.Librarian;
+import model.LibrarianManager;
+import model.Reader;
+import model.ReaderManager;
 
 import java.net.URL;
 import java.sql.Date;
@@ -36,9 +40,9 @@ public class Controller2 implements Initializable {
     @FXML
     private TextField borrLendID = new TextField();
     @FXML
-    private TextField readerID = new TextField();
+    private ComboBox readerID = new ComboBox();
     @FXML
-    private TextField librarianID = new TextField();
+    private ComboBox librarianID = new ComboBox();
     @FXML
     private DatePicker borrDate = new DatePicker();
     @FXML
@@ -115,8 +119,8 @@ public class Controller2 implements Initializable {
 
     BorrLend getBorrLendInfo() {
         String ma_muon_tra = this.borrLendID.getText();
-        String ma_doc_gia = this.readerID.getText();
-        String ma_thu_thu = this.librarianID.getText();
+        String ma_doc_gia = this.readerID.getSelectionModel().selectedItemProperty().getValue().toString();
+        String ma_thu_thu = this.librarianID.getSelectionModel().selectedItemProperty().getValue().toString();
         LocalDate ngay_muon = this.borrDate.getValue();
         LocalDate ngay_hen_tra = this.returnDate.getValue();
         int tien_coc = Integer.parseInt(this.deposit.getText());
@@ -128,8 +132,8 @@ public class Controller2 implements Initializable {
         this.borrDate.setValue(null);
         this.returnDate.setValue(null);
         this.borrLendID.setText("");
-        this.readerID.setText("");
-        this.librarianID.setText("");
+        this.readerID.getSelectionModel().clearSelection();
+        this.librarianID.getSelectionModel().clearSelection();
         this.deposit.setText("");
     }
 
@@ -148,12 +152,16 @@ public class Controller2 implements Initializable {
         tableViewBorrLend.setOnMouseClicked(e -> {
             mainBorrLend = tableViewBorrLend.getSelectionModel().getSelectedItem();
             borrLendID.setText(mainBorrLend.getMaMT());
-            readerID.setText(mainBorrLend.getMaDG());
-            librarianID.setText(mainBorrLend.getMaTT());
+            readerID.setValue(mainBorrLend.getMaDG());
+            librarianID.setValue(mainBorrLend.getMaTT());
             borrDate.setValue(mainBorrLend.getNgayMuon());
             returnDate.setValue(mainBorrLend.getNgayHenTra());
             deposit.setText(String.valueOf(mainBorrLend.getTienCoc()));
         });
+    }
+
+    public void cancelBorrLend() {
+        clearBorrLendInfo();
     }
 
     public void initialize(URL location, ResourceBundle resources) {
@@ -167,6 +175,22 @@ public class Controller2 implements Initializable {
             }
         } catch (SQLException var6) {
             var6.printStackTrace();
+        }
+        LibrarianManager libManager = new LibrarianManager();
+        ReaderManager readerManager = new ReaderManager();
+        try {
+            ArrayList<Librarian> libList = libManager.selectLibrarian();
+            ObservableList<String> libIDList = FXCollections.observableList(new ArrayList());
+            for (Librarian lb : libList)
+                libIDList.add(lb.getMaTT());
+            librarianID.setItems(libIDList);
+            ArrayList<Reader> readerList = readerManager.selectReader();
+            ObservableList<String> readerIDList = FXCollections.observableList(new ArrayList());
+            for (Reader rd : readerList)
+                readerIDList.add(rd.getMaDG());
+            readerID.setItems(readerIDList);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
         updateBorrLendTable();
         getSelectedBorrLend();

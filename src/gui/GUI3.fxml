@@ -8,239 +8,216 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="1030.0" prefWidth="1920.0" style="-fx-background-color: tan;" xmlns="http://javafx.com/javafx/8"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Controller3">
+<AnchorPane prefHeight="1030.0" prefWidth="1920.0" style="-fx-background-color: tan;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Controller3">
     <children>
-        <TableView id="tbl_book" fx:id="tableViewLibrarian" fixedCellSize="25.0" layoutX="30.0" layoutY="120.0"
-                   prefHeight="280.0" prefWidth="1860.0">
+        <TableView id="tbl_book" fx:id="tableViewLibrarian" fixedCellSize="25.0" layoutX="30.0" layoutY="120.0" prefHeight="280.0" prefWidth="1860.0">
             <columns>
-                <TableColumn id="maSach" fx:id="maTT" prefWidth="121.0" text="Mã thủ thư"/>
-                <TableColumn id="tenSach" fx:id="tenTT" prefWidth="350.0" text="Tên thủ thư"/>
-                <TableColumn id="tacGia" fx:id="gioiTinh" prefWidth="121.0" text="Giới tính"/>
-                <TableColumn id="nhaXuatBan" fx:id="ngaySinh" prefWidth="298.0" text="Ngày sinh"/>
-                <TableColumn id="namXuatBan" fx:id="CMND" prefWidth="252.0" text="CMND"/>
-                <TableColumn id="donGia" fx:id="email" prefWidth="471.0" text="Email"/>
-                <TableColumn id="gioiThieu" fx:id="dienThoai" prefWidth="247.0" text="Điện thoại"/>
+                <TableColumn id="maSach" fx:id="maTT" prefWidth="121.0" text="Mã thủ thư" />
+                <TableColumn id="tenSach" fx:id="tenTT" prefWidth="350.0" text="Tên thủ thư" />
+                <TableColumn id="tacGia" fx:id="gioiTinh" prefWidth="121.0" text="Giới tính" />
+                <TableColumn id="nhaXuatBan" fx:id="ngaySinh" prefWidth="298.0" text="Ngày sinh" />
+                <TableColumn id="namXuatBan" fx:id="CMND" prefWidth="252.0" text="CMND" />
+                <TableColumn id="donGia" fx:id="email" prefWidth="471.0" text="Email" />
+                <TableColumn id="gioiThieu" fx:id="dienThoai" prefWidth="247.0" text="Điện thoại" />
             </columns>
         </TableView>
-        <Label layoutX="30.0" layoutY="430.0" prefHeight="60.0" prefWidth="220.0"
-               style="-fx-background-color: yellow; -fx-border-color: green;" text="Mã thủ thư" textFill="BLUE"
-               wrapText="true">
+        <Label layoutX="30.0" layoutY="430.0" prefHeight="60.0" prefWidth="220.0" style="-fx-background-color: yellow; -fx-border-color: green;" text="Mã thủ thư" textFill="BLUE" wrapText="true">
             <effect>
-                <Blend/>
+                <Blend />
             </effect>
             <font>
-                <Font name="Sitka Text Bold" size="28.0"/>
+                <Font name="Sitka Text Bold" size="28.0" />
             </font>
             <padding>
-                <Insets bottom="5.0" left="10.0" right="5.0" top="5.0"/>
+                <Insets bottom="5.0" left="10.0" right="5.0" top="5.0" />
             </padding>
         </Label>
-        <TextField fx:id="librarianID" layoutX="300.0" layoutY="430.0" prefHeight="60.0" prefWidth="590.0"
-                   style="-fx-border-color: green;">
+        <TextField fx:id="librarianID" layoutX="300.0" layoutY="430.0" prefHeight="60.0" prefWidth="590.0" style="-fx-border-color: green;">
             <font>
-                <Font name="Times New Roman" size="25.0"/>
+                <Font name="Times New Roman" size="25.0" />
             </font>
         </TextField>
-        <Label layoutX="30.0" layoutY="505.0" prefHeight="60.0" prefWidth="220.0"
-               style="-fx-background-color: yellow; -fx-border-color: green;" text="Tên thủ thư" textFill="BLUE"
-               wrapText="true">
+        <Label layoutX="30.0" layoutY="505.0" prefHeight="60.0" prefWidth="220.0" style="-fx-background-color: yellow; -fx-border-color: green;" text="Tên thủ thư" textFill="BLUE" wrapText="true">
             <effect>
-                <Blend/>
+                <Blend />
             </effect>
             <font>
-                <Font name="Sitka Text Bold" size="28.0"/>
+                <Font name="Sitka Text Bold" size="28.0" />
             </font>
             <padding>
-                <Insets bottom="5.0" left="10.0" right="5.0" top="5.0"/>
+                <Insets bottom="5.0" left="10.0" right="5.0" top="5.0" />
             </padding>
         </Label>
-        <TextField fx:id="librarianName" layoutX="299.0" layoutY="505.0" prefHeight="60.0" prefWidth="593.0"
-                   style="-fx-border-color: green;">
+        <TextField fx:id="librarianName" layoutX="299.0" layoutY="505.0" prefHeight="60.0" prefWidth="593.0" style="-fx-border-color: green;">
             <font>
-                <Font name="Times New Roman" size="25.0"/>
+                <Font name="Times New Roman" size="25.0" />
             </font>
         </TextField>
-        <Label layoutX="30.0" layoutY="580.0" prefHeight="60.0" prefWidth="220.0"
-               style="-fx-background-color: yellow; -fx-border-color: green;" text="Giới tính" textFill="BLUE"
-               wrapText="true">
+        <Label layoutX="30.0" layoutY="580.0" prefHeight="60.0" prefWidth="220.0" style="-fx-background-color: yellow; -fx-border-color: green;" text="Giới tính" textFill="BLUE" wrapText="true">
             <effect>
-                <Blend/>
+                <Blend />
             </effect>
             <font>
-                <Font name="Sitka Text Bold" size="28.0"/>
+                <Font name="Sitka Text Bold" size="28.0" />
             </font>
             <padding>
-                <Insets bottom="5.0" left="10.0" right="5.0" top="5.0"/>
+                <Insets bottom="5.0" left="10.0" right="5.0" top="5.0" />
             </padding>
         </Label>
-        <TextField fx:id="gender" layoutX="300.0" layoutY="580.0" prefHeight="60.0" prefWidth="590.0"
-                   style="-fx-border-color: green;">
+        <TextField fx:id="gender" layoutX="300.0" layoutY="580.0" prefHeight="60.0" prefWidth="590.0" style="-fx-border-color: green;">
             <font>
-                <Font name="Times New Roman" size="25.0"/>
+                <Font name="Times New Roman" size="25.0" />
             </font>
         </TextField>
-        <Label layoutX="30.0" layoutY="655.0" prefHeight="60.0" prefWidth="220.0"
-               style="-fx-background-color: yellow; -fx-border-color: green;" text="Ngày sinh" textFill="BLUE"
-               wrapText="true">
+        <Label layoutX="30.0" layoutY="655.0" prefHeight="60.0" prefWidth="220.0" style="-fx-background-color: yellow; -fx-border-color: green;" text="Ngày sinh" textFill="BLUE" wrapText="true">
             <effect>
-                <Blend/>
+                <Blend />
             </effect>
             <font>
-                <Font name="Sitka Text Bold" size="28.0"/>
+                <Font name="Sitka Text Bold" size="28.0" />
             </font>
             <padding>
-                <Insets bottom="5.0" left="10.0" right="5.0" top="5.0"/>
+                <Insets bottom="5.0" left="10.0" right="5.0" top="5.0" />
             </padding>
         </Label>
-        <Label layoutX="30.0" layoutY="730.0" prefHeight="60.0" prefWidth="220.0"
-               style="-fx-background-color: yellow; -fx-border-color: green;" text="CMND" textFill="BLUE"
-               wrapText="true">
+        <Label layoutX="30.0" layoutY="730.0" prefHeight="60.0" prefWidth="220.0" style="-fx-background-color: yellow; -fx-border-color: green;" text="CMND" textFill="BLUE" wrapText="true">
             <effect>
-                <Blend/>
+                <Blend />
             </effect>
             <font>
-                <Font name="Sitka Text Bold" size="28.0"/>
+                <Font name="Sitka Text Bold" size="28.0" />
             </font>
             <padding>
-                <Insets bottom="5.0" left="10.0" right="5.0" top="5.0"/>
+                <Insets bottom="5.0" left="10.0" right="5.0" top="5.0" />
             </padding>
         </Label>
-        <TextField fx:id="card" layoutX="300.0" layoutY="730.0" prefHeight="60.0" prefWidth="590.0"
-                   style="-fx-border-color: green;">
+        <TextField fx:id="card" layoutX="300.0" layoutY="730.0" prefHeight="60.0" prefWidth="590.0" style="-fx-border-color: green;">
             <font>
-                <Font name="Times New Roman" size="25.0"/>
+                <Font name="Times New Roman" size="25.0" />
             </font>
         </TextField>
-        <Label layoutX="30.0" layoutY="805.0" prefHeight="60.0" prefWidth="220.0"
-               style="-fx-background-color: yellow; -fx-border-color: green;" text="Email" textFill="BLUE"
-               wrapText="true">
+        <Label layoutX="30.0" layoutY="805.0" prefHeight="60.0" prefWidth="220.0" style="-fx-background-color: yellow; -fx-border-color: green;" text="Email" textFill="BLUE" wrapText="true">
             <effect>
-                <Blend/>
+                <Blend />
             </effect>
             <font>
-                <Font name="Sitka Text Bold" size="28.0"/>
+                <Font name="Sitka Text Bold" size="28.0" />
             </font>
             <padding>
-                <Insets bottom="5.0" left="10.0" right="5.0" top="5.0"/>
+                <Insets bottom="5.0" left="10.0" right="5.0" top="5.0" />
             </padding>
         </Label>
-        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="1618.0" layoutY="570.0" prefHeight="45.0"
-               prefWidth="156.0" style="-fx-border-color: green; -fx-background-color: yellow;" text="TÌM KIẾM">
+        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="1618.0" layoutY="570.0" prefHeight="45.0" prefWidth="156.0" style="-fx-border-color: green; -fx-background-color: yellow;" text="TÌM KIẾM">
             <font>
-                <Font name="Calibri Bold" size="35.0"/>
+                <Font name="Calibri Bold" size="35.0" />
             </font>
             <padding>
-                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
             </padding>
         </Label>
-        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="1320.0" layoutY="650.0" prefHeight="60.0"
-               prefWidth="149.0" style="-fx-border-color: green; -fx-background-color: yellow;" text="Từ khóa"
-               textFill="BLUE">
+        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="1320.0" layoutY="650.0" prefHeight="60.0" prefWidth="149.0" style="-fx-border-color: green; -fx-background-color: yellow;" text="Từ khóa" textFill="BLUE">
             <font>
-                <Font name="Times New Roman Bold" size="28.0"/>
+                <Font name="Times New Roman Bold" size="28.0" />
             </font>
             <padding>
-                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
             </padding>
         </Label>
-        <TextField id="bookKeyword" fx:id="librarianKeyword" layoutX="1500.0" layoutY="650.0" prefHeight="60.0"
-                   prefWidth="390.0" style="-fx-border-color: green;">
+        <TextField id="bookKeyword" fx:id="librarianKeyword" layoutX="1500.0" layoutY="650.0" prefHeight="60.0" prefWidth="390.0" style="-fx-border-color: green;">
             <font>
-                <Font name="Times New Roman" size="25.0"/>
+                <Font name="Times New Roman" size="25.0" />
             </font>
         </TextField>
-        <Button layoutX="1621.0" layoutY="750.0" mnemonicParsing="false" onAction="#search" prefHeight="45.0"
-                prefWidth="149.0" style="-fx-background-color: #B0E2FF; -fx-border-color: green;" text="Tìm"
-                textFill="RED">
+        <Button layoutX="1621.0" layoutY="750.0" mnemonicParsing="false" onAction="#search" prefHeight="45.0" prefWidth="149.0" style="-fx-background-color: #B0E2FF; -fx-border-color: green;" text="Tìm" textFill="RED">
             <font>
-                <Font name="Times New Roman Bold" size="28.0"/>
+                <Font name="Times New Roman Bold" size="28.0" />
             </font>
             <cursor>
-                <Cursor fx:constant="HAND"/>
+                <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-        <Button layoutX="1033.0" layoutY="522.0" mnemonicParsing="false" onAction="#addNewLibrarian" prefHeight="60.0"
-                prefWidth="185.0" style="-fx-background-color: #B0E2FF; -fx-border-color: green;" text="Thêm"
-                textFill="RED">
-            <cursor>
-                <Cursor fx:constant="HAND"/>
-            </cursor>
+        <Button layoutX="1780.0" layoutY="940.0" mnemonicParsing="false" onAction="#showWindow0" prefHeight="60.0" prefWidth="110.0" text="BACK">
             <font>
-                <Font name="Times New Roman Bold" size="28.0"/>
-            </font>
-        </Button>
-        <Button layoutX="1033.0" layoutY="612.0" mnemonicParsing="false" onAction="#updateLibrarian" prefHeight="60.0"
-                prefWidth="185.0" style="-fx-background-color: #B0E2FF; -fx-border-color: green;" text="Sửa"
-                textFill="RED">
-            <cursor>
-                <Cursor fx:constant="HAND"/>
-            </cursor>
-            <font>
-                <Font name="Times New Roman Bold" size="28.0"/>
-            </font>
-        </Button>
-        <Button layoutX="1033.0" layoutY="702.0" mnemonicParsing="false" onAction="#deleteLibrarian" prefHeight="60.0"
-                prefWidth="185.0" style="-fx-background-color: #B0E2FF; -fx-border-color: green;" text="Xóa"
-                textFill="RED">
-            <cursor>
-                <Cursor fx:constant="HAND"/>
-            </cursor>
-            <font>
-                <Font name="Times New Roman Bold" size="28.0"/>
-            </font>
-        </Button>
-        <Button layoutX="1033.0" layoutY="792.0" mnemonicParsing="false" onAction="#cancelLibrarian" prefHeight="60.0"
-                prefWidth="185.0" style="-fx-background-color: #B0E2FF; -fx-border-color: green;" text="Hủy"
-                textFill="RED">
-            <cursor>
-                <Cursor fx:constant="HAND"/>
-            </cursor>
-            <font>
-                <Font name="Times New Roman Bold" size="28.0"/>
-            </font>
-        </Button>
-        <Button layoutX="1780.0" layoutY="940.0" mnemonicParsing="false" onAction="#showWindow0" prefHeight="60.0"
-                prefWidth="110.0" text="BACK">
-            <font>
-                <Font name="Calibri Bold" size="28.0"/>
+                <Font name="Calibri Bold" size="28.0" />
             </font>
             <cursor>
-                <Cursor fx:constant="HAND"/>
+                <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-        <TextField fx:id="mail" layoutX="300.0" layoutY="805.0" prefHeight="60.0" prefWidth="590.0"
-                   style="-fx-border-color: green;">
+        <TextField fx:id="mail" layoutX="300.0" layoutY="805.0" prefHeight="60.0" prefWidth="590.0" style="-fx-border-color: green;">
             <font>
-                <Font name="Times New Roman" size="25.0"/>
+                <Font name="Times New Roman" size="25.0" />
             </font>
         </TextField>
-        <TextField fx:id="phoneNum" layoutX="300.0" layoutY="880.0" prefHeight="60.0" prefWidth="590.0"
-                   style="-fx-border-color: green;">
+        <TextField fx:id="phoneNum" layoutX="300.0" layoutY="880.0" prefHeight="60.0" prefWidth="590.0" style="-fx-border-color: green;">
             <font>
-                <Font name="Times New Roman" size="25.0"/>
+                <Font name="Times New Roman" size="25.0" />
             </font>
         </TextField>
-        <Label layoutX="30.0" layoutY="880.0" prefHeight="60.0" prefWidth="220.0"
-               style="-fx-background-color: yellow; -fx-border-color: green;" text="Điện thoại" textFill="BLUE"
-               wrapText="true">
+        <Label layoutX="30.0" layoutY="880.0" prefHeight="60.0" prefWidth="220.0" style="-fx-background-color: yellow; -fx-border-color: green;" text="Điện thoại" textFill="BLUE" wrapText="true">
             <effect>
-                <Blend/>
+                <Blend />
             </effect>
             <font>
-                <Font name="Sitka Text Bold" size="28.0"/>
+                <Font name="Sitka Text Bold" size="28.0" />
             </font>
             <padding>
-                <Insets bottom="5.0" left="10.0" right="5.0" top="5.0"/>
+                <Insets bottom="5.0" left="10.0" right="5.0" top="5.0" />
             </padding>
         </Label>
-        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="702.0" layoutY="24.0" prefHeight="80.0"
-               prefWidth="517.0" style="-fx-background-color: #00aa00;" text="Quản lý thủ thư" textAlignment="CENTER">
+        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="702.0" layoutY="24.0" prefHeight="80.0" prefWidth="517.0" style="-fx-background-color: #00aa00;" text="Quản lý độc giả" textAlignment="CENTER">
             <font>
-                <Font name="Times New Roman Bold" size="50.0"/>
+                <Font name="Times New Roman Bold" size="50.0" />
             </font>
         </Label>
-        <DatePicker fx:id="birthday" layoutX="419.0" layoutY="655.0" prefHeight="60.0" prefWidth="352.0"
-                    style="-fx-font-size: 1.5em"/>
+        <DatePicker fx:id="birthday" layoutX="419.0" layoutY="655.0" prefHeight="60.0" prefWidth="352.0" style="-fx-font-size: 1.5em" />
+      <Button layoutX="1043.0" layoutY="880.0" mnemonicParsing="false" onAction="#listReader" prefHeight="60.0" prefWidth="185.0" style="-fx-background-color: #B0E2FF; -fx-border-color: green;" text="Thống kê" textFill="RED">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font name="Times New Roman Bold" size="28.0" />
+         </font>
+      </Button>
+      <Button layoutX="1043.0" layoutY="430.0" mnemonicParsing="false" onAction="#getReaderFileURL" prefHeight="60.0" prefWidth="185.0" style="-fx-background-color: #B0E2FF; -fx-border-color: green;" text="Nhập file" textFill="RED">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font name="Times New Roman Bold" size="28.0" />
+         </font>
+      </Button>
+      <Button layoutX="1043.0" layoutY="792.0" mnemonicParsing="false" onAction="#cancelReader" prefHeight="60.0" prefWidth="185.0" style="-fx-background-color: #B0E2FF; -fx-border-color: green;" text="Hủy" textFill="RED">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font name="Times New Roman Bold" size="28.0" />
+         </font>
+      </Button>
+      <Button layoutX="1043.0" layoutY="702.0" mnemonicParsing="false" onAction="#deleteReader" prefHeight="60.0" prefWidth="185.0" style="-fx-background-color: #B0E2FF; -fx-border-color: green;" text="Xóa" textFill="RED">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font name="Times New Roman Bold" size="28.0" />
+         </font>
+      </Button>
+      <Button layoutX="1043.0" layoutY="612.0" mnemonicParsing="false" onAction="#updateReader" prefHeight="60.0" prefWidth="185.0" style="-fx-background-color: #B0E2FF; -fx-border-color: green;" text="Sửa" textFill="RED">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font name="Times New Roman Bold" size="28.0" />
+         </font>
+      </Button>
+      <Button layoutX="1043.0" layoutY="522.0" mnemonicParsing="false" onAction="#addNewReader" prefHeight="60.0" prefWidth="185.0" style="-fx-background-color: #B0E2FF; -fx-border-color: green;" text="Thêm" textFill="RED">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font name="Times New Roman Bold" size="28.0" />
+         </font>
+      </Button>
     </children>
 </AnchorPane>
