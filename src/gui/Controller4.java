@@ -267,13 +267,14 @@ public class Controller4 implements Initializable {
             File bookDataFile = new File(librarianManager.saverURL + "//librarianData.txt");
             FileWriter librarianDataWriter = new FileWriter(bookDataFile.getAbsolutePath());
             int n = librarianList.size();
-            librarianDataWriter.write("-- Thống kê " + n + " thủ thư trong thư viện --\n");
+            librarianDataWriter.write("\n          ----------- Thống kê thủ thư trong thư viện -----------\n\n");
             for (int i = 0; i < n; i++) {
                 librarianDataWriter.write("No " + i + 1 + ":\n");
-                librarianDataWriter.write(librarianList.get(i).getMaTT() + "\n" + librarianList.get(i).getTenTT() + "\n"
-                        + librarianList.get(i).getGioiTinh() + "\n" + librarianList.get(i).getNgaySinh() + "\n"
-                        + librarianList.get(i).getCMND() + "\n" + librarianList.get(i).getEmail() + "\n"
-                        + librarianList.get(i).getDienThoai() + "\n ---------------\n");
+                librarianDataWriter.write(" ------------------\n" + "No " + (i + 1) + ":\n" + "Mã thủ thư: "
+                        + librarianList.get(i).getMaTT() + "\nTên thủ thư: " + librarianList.get(i).getTenTT() + "\n" + "Giới tính: "
+                        + librarianList.get(i).getGioiTinh() + "\nNgày sinh: " + librarianList.get(i).getNgaySinh() + "\nCMND: "
+                        + librarianList.get(i).getCMND() + "\nEmail: " + librarianList.get(i).getEmail() + "\nĐiện thoại: "
+                        + librarianList.get(i).getDienThoai() + "\n");
             }
             librarianDataWriter.close();
             (new Controller0()).setAlert("Xuất dữ liệu thành công!");

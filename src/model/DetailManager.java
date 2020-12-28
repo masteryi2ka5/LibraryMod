@@ -63,7 +63,7 @@ public class DetailManager {
     public boolean updateDetail(Detail d) {
         String updQuery = "UPDATE dbo.ChiTietMuonTra SET MaMT='" + d.getMaMT() + "', MaSach='" + d.getMaSach()
                 + "', NgayTra='" + d.getNgayTra().toString() + "', TienPhat=" + d.getTienPhat()
-                + ", TrangThaiSach=N'" + d.getTrangThai() + "', GhiChu='" + d.getGhiChu() + "' WHERE MaMT='"
+                + ", TrangThaiSach=N'" + d.getTrangThai() + "', GhiChu=N'" + d.getGhiChu() + "' WHERE MaMT='"
                 + d.getMaMT() + "' AND MaSach='" + d.getMaSach() + "'";
         try {
             PreparedStatement pstm = this.cnn.prepareStatement(updQuery);

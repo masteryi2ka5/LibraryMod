@@ -44,17 +44,17 @@ public class ReaderManager {
         return selReaderList;
     }
 
-    public boolean addReader(Reader l) {
-        String insQuery = "INSERT INTO dbo.ThuThu VALUES(?, ?, ?, ?, ?, ?, ?)";
+    public boolean addReader(Reader r) {
+        String insQuery = "INSERT INTO dbo.DocGia VALUES(?, ?, ?, ?, ?, ?, ?)";
         try {
             PreparedStatement pstm = this.cnn.prepareStatement(insQuery);
-            pstm.setString(1, l.getMaDG());
-            pstm.setString(2, l.getTenDG());
-            pstm.setString(3, l.getGioiTinh());
-            pstm.setDate(4, Date.valueOf(l.getNgaySinh()));
-            pstm.setString(5, l.getCMND());
-            pstm.setString(6, l.getEmail());
-            pstm.setString(7, l.getDienThoai());
+            pstm.setString(1, r.getMaDG());
+            pstm.setString(2, r.getTenDG());
+            pstm.setString(3, r.getGioiTinh());
+            pstm.setDate(4, Date.valueOf(r.getNgaySinh()));
+            pstm.setString(5, r.getCMND());
+            pstm.setString(6, r.getEmail());
+            pstm.setString(7, r.getDienThoai());
             pstm.execute();
             return true;
         } catch (SQLException var5) {
@@ -79,7 +79,7 @@ public class ReaderManager {
     }
 
     public boolean deleteReader(Reader b) {
-        String delQuery = "DELETE FROM dbo.ThuThu WHERE maDG='" + b.getMaDG() + "'";
+        String delQuery = "DELETE FROM dbo.DocGia WHERE maDG='" + b.getMaDG() + "'";
         try {
             PreparedStatement pstm = cnn.prepareStatement(delQuery);
             pstm.execute();

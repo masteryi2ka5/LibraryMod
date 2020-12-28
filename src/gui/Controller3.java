@@ -201,13 +201,13 @@ public class Controller3 implements Initializable {
         boolean res = true;
         int n = insertList.size();
         for (int i = 0; i < n; i++) {
-            Reader b = insertList.get(i);
-            res = res && readerManager.addReader(b);
+            Reader r = insertList.get(i);
+            res = res && readerManager.addReader(r);
             if (res == false) {
                 (new Controller0()).setAlert("Nhập file thất bại!");
                 return;
             }
-            readerList.add(b);
+            readerList.add(r);
             tableViewReader.setItems(readerList);
             updateReaderTable();
         }
@@ -228,12 +228,13 @@ public class Controller3 implements Initializable {
             File readerDataFile = new File(readerManager.saverURL + "//readerData.txt");
             FileWriter readerDataWriter = new FileWriter(readerDataFile.getAbsolutePath());
             int n = readerList.size();
-            readerDataWriter.write("-- Thống kê " + n + " độc giả trong thư viện --\n");
+            readerDataWriter.write("\n          ----------- Thống kê độc giả trong thư viện -----------\n\n");
             for (int i = 0; i < n; i++) {
-                readerDataWriter.write("No " + i + 1 + ":\n" + readerList.get(i).getMaDG() + "\n" + readerList.get(i).getTenDG() + "\n"
-                        + readerList.get(i).getGioiTinh() + "\n" + readerList.get(i).getNgaySinh() + "\n"
-                        + readerList.get(i).getCMND() + "\n" + readerList.get(i).getEmail() + "\n"
-                        + readerList.get(i).getDienThoai() + "\n ----------------\n");
+                readerDataWriter.write(" ------------------\n" + "No " + (i + 1) + ":\n" + "Mã độc giả: "
+                        + readerList.get(i).getMaDG() + "\nTên độc giả: " + readerList.get(i).getTenDG() + "\n" + "Giới tính: "
+                        + readerList.get(i).getGioiTinh() + "\nNgày sinh: " + readerList.get(i).getNgaySinh() + "\nCMND: "
+                        + readerList.get(i).getCMND() + "\nEmail: " + readerList.get(i).getEmail() + "\nĐiện thoại: "
+                        + readerList.get(i).getDienThoai() + "\n");
             }
             readerDataWriter.close();
             (new Controller0()).setAlert("Xuất dữ liệu thành công!");

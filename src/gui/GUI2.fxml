@@ -136,7 +136,7 @@
                 <Font name="Times New Roman Bold" size="28.0" />
             </font>
         </Button>
-        <Button layoutX="1030.0" layoutY="636.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="185.0" style="-fx-background-color: #B0E2FF; -fx-border-color: green;" text="Lưu" textFill="RED">
+        <Button layoutX="1030.0" layoutY="726.0" mnemonicParsing="false" onAction="#printBorrLendPatern" prefHeight="60.0" prefWidth="185.0" style="-fx-background-color: #B0E2FF; -fx-border-color: green;" text="In biểu mẫu" textFill="RED">
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>
@@ -144,7 +144,7 @@
                 <Font name="Times New Roman Bold" size="28.0" />
             </font>
         </Button>
-        <Button layoutX="1030.0" layoutY="726.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="185.0" style="-fx-background-color: #B0E2FF; -fx-border-color: green;" text="Xóa" textFill="RED">
+        <Button layoutX="1030.0" layoutY="636.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="185.0" style="-fx-background-color: #B0E2FF; -fx-border-color: green;" text="Xóa" textFill="RED">
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>

@@ -243,12 +243,13 @@ public class Controller1 implements Initializable {
             File bookDataFile = new File(bookManager.saverURL + "//bookData.txt");
             FileWriter bookDataWriter = new FileWriter(bookDataFile.getAbsolutePath());
             int n = bookList.size();
-            bookDataWriter.write("-- Thống kê " + n + " loại sách trong thư viện --\n");
+            bookDataWriter.write("\n          ----------- Thống kê sách trong thư viện -----------\n\n");
             for (int i = 0; i < n; i++) {
-                bookDataWriter.write("No " + (i + 1) + ":\n" + bookList.get(i).getMaSach() + "\n" + bookList.get(i).getTenSach() + "\n"
-                        + bookList.get(i).getTacGia() + "\n" + bookList.get(i).getNhaXB() + "\n"
-                        + bookList.get(i).getNamXB() + "\n" + bookList.get(i).getDonGia() + "\n"
-                        + bookList.get(i).getGioiThieu() + "\n --------------\n");
+                bookDataWriter.write(" ------------------\n" + "No " + (i + 1) + ":\n" + "Mã sách: "
+                        + bookList.get(i).getMaSach() + "\nTên sách: " + bookList.get(i).getTenSach() + "\n" + "Tác giả: "
+                        + bookList.get(i).getTacGia() + "\nNhà xuất bản: " + bookList.get(i).getNhaXB() + "\nNăm xuất bản: "
+                        + bookList.get(i).getNamXB() + "\nĐơn giá: " + bookList.get(i).getDonGia() + "\nGiới thiệu: "
+                        + bookList.get(i).getGioiThieu() + "\n");
             }
             bookDataWriter.close();
             (new Controller0()).setAlert("Xuất dữ liệu thành công!");

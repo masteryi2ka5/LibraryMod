@@ -100,7 +100,7 @@ public class LibrarianManager {
         XSSFSheet sheet = workbook.getSheetAt(0);
         int R = sheet.getLastRowNum();
         for (int i = 1; i <= R; i++) {
-            Librarian tmpLib = new Librarian(NumberToTextConverter.toText(sheet.getRow(i).getCell(0).getNumericCellValue()), sheet.getRow(i).getCell(1).toString(),
+            Librarian tmpLib = new Librarian(sheet.getRow(i).getCell(0).toString(), sheet.getRow(i).getCell(1).toString(),
                     sheet.getRow(i).getCell(2).toString(),
                     (sheet.getRow(i).getCell(3).getDateCellValue()).toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
                     sheet.getRow(i).getCell(4).toString(), sheet.getRow(i).getCell(5).toString(),

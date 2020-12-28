@@ -21,6 +21,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class Controller5 implements Initializable {
@@ -246,12 +247,42 @@ public class Controller5 implements Initializable {
         }
     }
 
-    public void listDetail() {
+    public void printDetailPatern() throws IOException, SQLException {
+        ArrayList<String> borrLendIDList = new ArrayList<>();
+        for (Detail d : detailList)
+            borrLendIDList.add(d.getMaMT());
+        ChoiceDialog<String> dialog = new ChoiceDialog<>(borrLendIDList.get(0), borrLendIDList);
+        dialog.setTitle("Xuất biểu mẫu phiếu mượn");
+        dialog.setContentText("Mời chọn mã mượn trả!");
+        dialog.setContentText("Mã mượn trả: ");
+        Optional<String> borrLendID = dialog.showAndWait();
         boolean sel = (new Controller0()).setConfirm("Chọn nơi lưu!");
         if (sel) {
+            DirectoryChooser directoryChooser = new DirectoryChooser();
             File selectedDirectory = directoryChooser.showDialog(GUI.window);
-            detailManager.saverURL = selectedDirectory.getAbsolutePath();
-            exportListingFile();
+            String URL = selectedDirectory.getAbsolutePath();
+            File detailPatern = new File(URL + "//ChiTietMT" + borrLendID.get() + ".txt");
+            FileWriter fileWriter = new FileWriter(detailPatern.getAbsolutePath());
+            ArrayList<Detail> details = new ArrayList<>();
+            for (Detail d : detailList)
+                if (d.getMaMT().equals(borrLendID.get()))
+                    details.add(d);
+            int n = details.size();
+            fileWriter.write("\n\t\t -- CHI TIẾT MƯỢN TRẢ SÁCH --" + "\n" + "\t\t      MÃ MƯỢN TRẢ: " + details.get(0).getMaMT() + "\n\n");
+            for (int i = 0; i < n; i++) {
+                fileWriter.write("---------------------------------------------------------------\n");
+                fileWriter.write("Mã sách: " + details.get(i).getMaSach() + "\t\t\tNgày trả: " + details.get(i).getNgayTra() + "\n");
+                fileWriter.write("Tiền phạt: " + details.get(i).getTienPhat() + "\n");
+                fileWriter.write("Trạng thái sách: " + details.get(i).getTrangThai() + "\n");
+                fileWriter.write("Ghi chú: " + details.get(i).getGhiChu() + "\n");
+            }
+            fileWriter.write("---------------------------------------------------------------\n");
+            fileWriter.write("\n\n     Chữ ký của độc giả\t\tChữ ký của thủ thư\n");
+            fileWriter.close();
+            (new Controller0()).setAlert("In biểu mẫu thành công!");
+        }
+        else {
+            (new Controller0()).setAlert("In biểu mẫu thất bại!");
         }
     }
 

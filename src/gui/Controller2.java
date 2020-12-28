@@ -7,11 +7,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.DirectoryChooser;
 import model.*;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.net.URL;
-import java.sql.Date;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.*;
@@ -156,6 +158,38 @@ public class Controller2 implements Initializable {
             returnDate.setValue(mainBorrLend.getNgayHenTra());
             deposit.setText(String.valueOf(mainBorrLend.getTienCoc()));
         });
+    }
+
+    public void printBorrLendPatern() throws IOException {
+        ArrayList<String> borrLendIDList = new ArrayList<>();
+        for (BorrLend bl : borrLendList)
+            borrLendIDList.add(bl.getMaMT());
+        ChoiceDialog<String> dialog = new ChoiceDialog<>(borrLendIDList.get(0), borrLendIDList);
+        dialog.setTitle("Xuất biểu mẫu phiếu mượn");
+        dialog.setContentText("Mời chọn mã mượn trả!");
+        dialog.setContentText("Mã mượn trả: ");
+        Optional<String> borrLendID = dialog.showAndWait();
+        boolean sel = (new Controller0()).setConfirm("Chọn nơi lưu!");
+        if (sel) {
+            DirectoryChooser directoryChooser = new DirectoryChooser();
+            File selectedDirectory = directoryChooser.showDialog(GUI.window);
+            String URL = selectedDirectory.getAbsolutePath();
+            File borrLendPatern = new File(URL + "//MT" + borrLendID.get() + ".txt");
+            FileWriter fileWriter = new FileWriter(borrLendPatern.getAbsolutePath());
+            BorrLend tmp = new BorrLend();
+            for (BorrLend bl : borrLendList)
+                if (bl.getMaMT().equals(borrLendID.get()))
+                    tmp = bl;
+            fileWriter.write("\n\t\t --- PHIẾU MƯỢN SÁCH ---" + "\n" + "\t\t   MÃ PHIẾU: " + tmp.getMaMT() + "\n\n");
+            fileWriter.write("Mã thủ thư: " + tmp.getMaTT() + "\tNgày mượn: " + tmp.getNgayMuon() + "\n");
+            fileWriter.write("Mã độc giả: " + tmp.getMaDG() + "\tNgày hẹn trả: " + tmp.getNgayHenTra() + "\n");
+            fileWriter.write("Tiền cọc: " + tmp.getTienCoc() + "\n\n   Chữ ký của độc giả\t\tChữ ký của thủ thư");
+            fileWriter.close();
+            (new Controller0()).setAlert("In biểu mẫu thành công!");
+        }
+        else {
+            (new Controller0()).setAlert("In biểu mẫu thất bại!");
+        }
     }
 
     public void cancelBorrLend() {
