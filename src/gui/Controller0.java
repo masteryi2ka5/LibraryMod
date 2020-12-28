@@ -31,6 +31,11 @@ public class Controller0 implements Initializable {
         GUI.window.show();
     }
 
+    public void showWindow5(ActionEvent event) {
+        GUI.window.setScene(GUI.scene5);
+        GUI.window.show();
+    }
+
     void setAlert(String mess) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Thông báo");

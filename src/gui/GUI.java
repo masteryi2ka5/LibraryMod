@@ -13,11 +13,13 @@ public class GUI extends Application {
     static Parent root2;
     static Parent root3;
     static Parent root4;
+    static Parent root5;
     static Scene scene0;
     static Scene scene1;
     static Scene scene2;
     static Scene scene3;
     static Scene scene4;
+    static Scene scene5;
 
     public GUI() {
     }
@@ -38,6 +40,8 @@ public class GUI extends Application {
             scene3 = new Scene(root3);
             root4 = FXMLLoader.load(this.getClass().getResource("/gui/GUI4.fxml"));
             scene4 = new Scene(root4);
+            root5 = FXMLLoader.load(this.getClass().getResource("/gui/GUI5.fxml"));
+            scene5 = new Scene(root5);
         } catch (Exception e) {
             e.printStackTrace();
         }

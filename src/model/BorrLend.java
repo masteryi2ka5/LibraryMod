@@ -2,7 +2,7 @@ package model;
 
 import java.time.LocalDate;
 
-public class BorrLend implements Comparable<BorrLend>{
+public class BorrLend implements Comparable<BorrLend> {
     private String maMT;
     private String maDG;
     private String maTT;

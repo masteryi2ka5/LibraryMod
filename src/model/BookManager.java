@@ -1,10 +1,9 @@
 package model;
 
-import gui.Controller0;
-import gui.Controller1;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
@@ -84,34 +83,20 @@ public class BookManager {
         }
     }
 
-    public ArrayList<Book> insertBookByFile() {
-        BufferedReader br = null;
+    public ArrayList<Book> insertBookByFile() throws IOException {
         ArrayList<Book> insertList = new ArrayList<>();
-        try {
-            br = new BufferedReader(new FileReader(bookFileURL));
-            String maSach, tenSach, tagGia, nhaXB, gioiThieu;
-            int namXB, donGia;
-            int n = Integer.parseInt(br.readLine());
-            for (int i = 0; i < n; i++) {
-                maSach = br.readLine();
-                tenSach = br.readLine();
-                tagGia = br.readLine();
-                nhaXB = br.readLine();
-                namXB = Integer.parseInt(br.readLine());
-                donGia = Integer.parseInt(br.readLine());
-                gioiThieu = br.readLine();
-                Book tmp = new Book(maSach, tenSach, tagGia, nhaXB, namXB, donGia, gioiThieu);
-                insertList.add(tmp);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                br.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return insertList;
+        FileInputStream file = new FileInputStream(bookFileURL);
+        XSSFWorkbook workbook = new XSSFWorkbook(file);
+        XSSFSheet sheet = workbook.getSheetAt(0);
+        int R = sheet.getLastRowNum();
+        for (int i = 1; i <= R; i++) {
+            Book tmpBook = new Book(sheet.getRow(i).getCell(0).toString(), sheet.getRow(i).getCell(1).toString(),
+                    sheet.getRow(i).getCell(2).toString(), sheet.getRow(i).getCell(3).toString(),
+                    (int)sheet.getRow(i).getCell(4).getNumericCellValue(), (int)sheet.getRow(i).getCell(5).getNumericCellValue(),
+                    sheet.getRow(i).getCell(6).toString());
+            insertList.add(tmpBook);
         }
+        workbook.close();
+        return insertList;
     }
 }

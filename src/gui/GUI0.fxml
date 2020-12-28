@@ -16,7 +16,7 @@
                 <Image url="@../resource/GUI0_background.jpg" />
             </image>
         </ImageView>
-        <Button alignment="CENTER" contentDisplay="CENTER" layoutX="148.0" layoutY="415.0" lineSpacing="10.0" mnemonicParsing="false" onAction="#showWindow1" prefHeight="420.0" prefWidth="295.0" style="-fx-background-color: tan;" text="QUẢN LÝ SÁCH" textAlignment="CENTER" textFill="BLUE" wrapText="true">
+        <Button alignment="CENTER" contentDisplay="CENTER" layoutX="95.0" layoutY="415.0" lineSpacing="10.0" mnemonicParsing="false" onAction="#showWindow1" prefHeight="420.0" prefWidth="270.0" style="-fx-background-color: tan;" text="QUẢN LÝ SÁCH" textAlignment="CENTER" textFill="BLUE" wrapText="true">
             <font>
                 <Font name="Times New Roman Bold" size="40.0" />
             </font>
@@ -24,18 +24,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-        <Button alignment="CENTER" contentDisplay="CENTER" layoutX="591.0" layoutY="415.0" lineSpacing="10.0" mnemonicParsing="false" onAction="#showWindow2" prefHeight="420.0" prefWidth="295.0" style="-fx-background-color: tan;" text="QUẢN LÝ MƯỢN TRẢ" textAlignment="CENTER" textFill="BLUE" wrapText="true">
-            <font>
-                <Font name="Times New Roman Bold" size="40.0" />
-            </font>
-            <cursor>
-                <Cursor fx:constant="HAND" />
-            </cursor>
-            <effect>
-                <Blend />
-            </effect>
-        </Button>
-        <Button alignment="CENTER" contentDisplay="CENTER" layoutX="1034.0" layoutY="418.0" lineSpacing="10.0" mnemonicParsing="false" onAction="#showWindow3" prefHeight="420.0" prefWidth="295.0" style="-fx-background-color: tan;" text="QUẢN LÝ ĐỘC GIẢ" textAlignment="CENTER" textFill="BLUE" wrapText="true">
+        <Button alignment="CENTER" contentDisplay="CENTER" layoutX="460.0" layoutY="415.0" lineSpacing="10.0" mnemonicParsing="false" onAction="#showWindow2" prefHeight="420.0" prefWidth="270.0" style="-fx-background-color: tan;" text="QUẢN LÝ MƯỢN" textAlignment="CENTER" textFill="BLUE" wrapText="true">
             <font>
                 <Font name="Times New Roman Bold" size="40.0" />
             </font>
@@ -46,7 +35,18 @@
                 <Blend />
             </effect>
         </Button>
-        <Button alignment="CENTER" contentDisplay="CENTER" layoutX="1477.0" layoutY="415.0" lineSpacing="10.0" mnemonicParsing="false" onAction="#showWindow4" prefHeight="420.0" prefWidth="295.0" style="-fx-background-color: tan;" text="QUẢN LÝ NHÂN VIÊN" textAlignment="CENTER" textFill="BLUE" wrapText="true">
+        <Button alignment="CENTER" contentDisplay="CENTER" layoutX="825.0" layoutY="415.0" lineSpacing="10.0" mnemonicParsing="false" onAction="#showWindow3" prefHeight="420.0" prefWidth="270.0" style="-fx-background-color: tan;" text="QUẢN LÝ ĐỘC GIẢ" textAlignment="CENTER" textFill="BLUE" wrapText="true">
+            <font>
+                <Font name="Times New Roman Bold" size="40.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+            <effect>
+                <Blend />
+            </effect>
+        </Button>
+        <Button alignment="CENTER" contentDisplay="CENTER" layoutX="1190.0" layoutY="415.0" lineSpacing="10.0" mnemonicParsing="false" onAction="#showWindow4" prefHeight="420.0" prefWidth="270.0" style="-fx-background-color: tan;" text="QUẢN LÝ NHÂN VIÊN" textAlignment="CENTER" textFill="BLUE" wrapText="true">
             <font>
                 <Font name="Times New Roman Bold" size="40.0" />
             </font>
@@ -65,5 +65,16 @@
                 <Glow level="1.0" />
             </effect>
         </Label>
+      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="1555.0" layoutY="415.0" lineSpacing="10.0" mnemonicParsing="false" onAction="#showWindow5" prefHeight="420.0" prefWidth="270.0" style="-fx-background-color: tan;" text="QUẢN LÝ CHI TIẾT MƯỢN TRẢ" textAlignment="CENTER" textFill="BLUE" wrapText="true">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <effect>
+            <Blend />
+         </effect>
+         <font>
+            <Font name="Times New Roman Bold" size="40.0" />
+         </font>
+      </Button>
     </children>
 </AnchorPane>

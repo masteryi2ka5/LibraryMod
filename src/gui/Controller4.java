@@ -97,8 +97,17 @@ public class Controller4 implements Initializable {
         if (librarianSearchList.isEmpty()) {
             (new Controller0()).setAlert("Không tìm thấy kết quả nào!");
             updateLibrarianTable();
-        } else {
-            updateLibrarianTable();
+        }
+        else {
+            Collections.sort(librarianList);
+            maTT.setCellValueFactory(new PropertyValueFactory("maTT"));
+            tenTT.setCellValueFactory(new PropertyValueFactory("tenTT"));
+            gioiTinh.setCellValueFactory(new PropertyValueFactory("gioiTinh"));
+            ngaySinh.setCellValueFactory(new PropertyValueFactory("ngaySinh"));
+            CMND.setCellValueFactory(new PropertyValueFactory("CMND"));
+            mail.setCellValueFactory(new PropertyValueFactory("email"));
+            dienThoai.setCellValueFactory(new PropertyValueFactory("dienThoai"));
+            tableViewLibrarian.setItems(this.librarianSearchList);
         }
         librarianKeyword.setText("");
     }
@@ -157,7 +166,7 @@ public class Controller4 implements Initializable {
         }
     }
 
-    public void cancelBook() {
+    public void cancelLibrarian() {
         clearLibrarianInfo();
     }
 
@@ -226,13 +235,13 @@ public class Controller4 implements Initializable {
         getSelectedLibrarian();
     }
 
-    public void getLibrarianFileURL() {
+    public void getLibrarianFileURL() throws IOException {
         File selectedFile = fileChooser.showOpenDialog(GUI.window);
         librarianManager.librarianFileURL = selectedFile.getAbsolutePath();
         insertLibrarianByFile();
     }
 
-    public void insertLibrarianByFile() {
+    public void insertLibrarianByFile() throws IOException {
         ArrayList<Librarian> insertList = librarianManager.insertLibrarianByFile();
         boolean res = true;
         int n = insertList.size();
@@ -264,7 +273,7 @@ public class Controller4 implements Initializable {
                 librarianDataWriter.write(librarianList.get(i).getMaTT() + "\n" + librarianList.get(i).getTenTT() + "\n"
                         + librarianList.get(i).getGioiTinh() + "\n" + librarianList.get(i).getNgaySinh() + "\n"
                         + librarianList.get(i).getCMND() + "\n" + librarianList.get(i).getEmail() + "\n"
-                        + librarianList.get(i).getDienThoai() + "\n");
+                        + librarianList.get(i).getDienThoai() + "\n ---------------\n");
             }
             librarianDataWriter.close();
             (new Controller0()).setAlert("Xuất dữ liệu thành công!");
@@ -272,10 +281,6 @@ public class Controller4 implements Initializable {
             (new Controller0()).setAlert("Xuất dữ liệu thất bại!");
             e.printStackTrace();
         }
-    }
-
-    public void cancelLibrarian() {
-
     }
 
     public void listLibrarian() {

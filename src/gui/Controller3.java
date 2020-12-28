@@ -7,8 +7,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.DirectoryChooser;
+import javafx.stage.FileChooser;
 import model.*;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -47,6 +52,10 @@ public class Controller3 implements Initializable {
     private TextField phoneNum = new TextField();
     @FXML
     private TextField readerKeyword = new TextField();
+    @FXML
+    private FileChooser fileChooser = new FileChooser();
+    @FXML
+    private DirectoryChooser directoryChooser = new DirectoryChooser();
 
     public Controller3() {
     }
@@ -78,8 +87,8 @@ public class Controller3 implements Initializable {
         }
         else {
             Collections.sort(readerSearchList);
-            maDG.setCellValueFactory(new PropertyValueFactory("maTT"));
-            tenDG.setCellValueFactory(new PropertyValueFactory("tenTT"));
+            maDG.setCellValueFactory(new PropertyValueFactory("maDG"));
+            tenDG.setCellValueFactory(new PropertyValueFactory("tenDG"));
             gioiTinh.setCellValueFactory(new PropertyValueFactory("gioiTinh"));
             ngaySinh.setCellValueFactory(new PropertyValueFactory("ngaySinh"));
             CMND.setCellValueFactory(new PropertyValueFactory("CMND"));
@@ -185,6 +194,62 @@ public class Controller3 implements Initializable {
         mail.setText("");
         phoneNum.setText("");
         updateReaderTable();
+    }
+
+    public void insertReaderByFile() throws IOException {
+        ArrayList<Reader> insertList = readerManager.insertReaderByFile();
+        boolean res = true;
+        int n = insertList.size();
+        for (int i = 0; i < n; i++) {
+            Reader b = insertList.get(i);
+            res = res && readerManager.addReader(b);
+            if (res == false) {
+                (new Controller0()).setAlert("Nhập file thất bại!");
+                return;
+            }
+            readerList.add(b);
+            tableViewReader.setItems(readerList);
+            updateReaderTable();
+        }
+        if (res == true)
+            (new Controller0()).setAlert("Nhập file thành công!");
+        else
+            (new Controller0()).setAlert("Nhập file thất bại!");
+    }
+
+    public void getReaderFileURL() throws IOException {
+        File selectedFile = fileChooser.showOpenDialog(GUI.window);
+        readerManager.readerFileURL = selectedFile.getAbsolutePath();
+        insertReaderByFile();
+    }
+
+    public void exportReaderListingFile() {
+        try {
+            File readerDataFile = new File(readerManager.saverURL + "//readerData.txt");
+            FileWriter readerDataWriter = new FileWriter(readerDataFile.getAbsolutePath());
+            int n = readerList.size();
+            readerDataWriter.write("-- Thống kê " + n + " độc giả trong thư viện --\n");
+            for (int i = 0; i < n; i++) {
+                readerDataWriter.write("No " + i + 1 + ":\n" + readerList.get(i).getMaDG() + "\n" + readerList.get(i).getTenDG() + "\n"
+                        + readerList.get(i).getGioiTinh() + "\n" + readerList.get(i).getNgaySinh() + "\n"
+                        + readerList.get(i).getCMND() + "\n" + readerList.get(i).getEmail() + "\n"
+                        + readerList.get(i).getDienThoai() + "\n ----------------\n");
+            }
+            readerDataWriter.close();
+            (new Controller0()).setAlert("Xuất dữ liệu thành công!");
+        } catch (IOException e) {
+            (new Controller0()).setAlert("Xuất dữ liệu thất bại!");
+            e.printStackTrace();
+        }
+    }
+
+    public void listReader() {
+        boolean sel = (new Controller0()).setConfirm("Chọn nơi lưu!");
+        if (sel) {
+            File selectedDirectory = directoryChooser.showDialog(GUI.window);
+            readerManager.saverURL = selectedDirectory.getAbsolutePath();
+            exportReaderListingFile();
+        }
     }
 
     @Override

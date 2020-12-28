@@ -1,10 +1,19 @@
 package model;
 
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.FormulaEvaluator;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.util.NumberToTextConverter;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
 import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.*;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 
 public class LibrarianManager {
@@ -84,34 +93,22 @@ public class LibrarianManager {
         }
     }
 
-    public ArrayList<Librarian> insertLibrarianByFile() {
-        BufferedReader br = null;
+    public ArrayList<Librarian> insertLibrarianByFile() throws IOException {
         ArrayList<Librarian> insertList = new ArrayList<>();
-        try {
-            br = new BufferedReader(new FileReader(librarianFileURL));
-            String maTT, tenTT, gioiTinh, CMND, email, dienThoai;
-            LocalDate ngaySinh;
-            int n = Integer.parseInt(br.readLine());
-            for (int i = 0; i < n; i++) {
-                maTT = br.readLine();
-                tenTT = br.readLine();
-                gioiTinh = br.readLine();
-                ngaySinh = LocalDate.parse(br.readLine());
-                CMND = br.readLine();
-                email = br.readLine();
-                dienThoai = br.readLine();
-                Librarian tmp = new Librarian(maTT, tenTT, gioiTinh, ngaySinh, CMND, email, dienThoai);
-                insertList.add(tmp);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                br.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return insertList;
+        FileInputStream file = new FileInputStream(librarianFileURL);
+        XSSFWorkbook workbook = new XSSFWorkbook(file);
+        XSSFSheet sheet = workbook.getSheetAt(0);
+        int R = sheet.getLastRowNum();
+        for (int i = 1; i <= R; i++) {
+            Librarian tmpLib = new Librarian(NumberToTextConverter.toText(sheet.getRow(i).getCell(0).getNumericCellValue()), sheet.getRow(i).getCell(1).toString(),
+                    sheet.getRow(i).getCell(2).toString(),
+                    (sheet.getRow(i).getCell(3).getDateCellValue()).toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
+                    sheet.getRow(i).getCell(4).toString(), sheet.getRow(i).getCell(5).toString(),
+                    sheet.getRow(i).getCell(6).toString());
+            insertList.add(tmpLib);
+
         }
+        workbook.close();
+        return insertList;
     }
 }

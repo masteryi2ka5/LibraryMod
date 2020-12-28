@@ -211,13 +211,13 @@ public class Controller1 implements Initializable {
         getSelectedBook();
     }
 
-    public void getBookFileURL() {
+    public void getBookFileURL() throws IOException {
         File selectedFile = fileChooser.showOpenDialog(GUI.window);
         bookManager.bookFileURL = selectedFile.getAbsolutePath();
         insertBookByFile();
     }
 
-    public void insertBookByFile() {
+    public void insertBookByFile() throws IOException {
         ArrayList<Book> insertList = bookManager.insertBookByFile();
         boolean res = true;
         int n = insertList.size();
@@ -245,10 +245,10 @@ public class Controller1 implements Initializable {
             int n = bookList.size();
             bookDataWriter.write("-- Thống kê " + n + " loại sách trong thư viện --\n");
             for (int i = 0; i < n; i++) {
-                bookDataWriter.write("No " + i + 1 + ":\n" + bookList.get(i).getMaSach() + "\n" + bookList.get(i).getTenSach() + "\n"
+                bookDataWriter.write("No " + (i + 1) + ":\n" + bookList.get(i).getMaSach() + "\n" + bookList.get(i).getTenSach() + "\n"
                         + bookList.get(i).getTacGia() + "\n" + bookList.get(i).getNhaXB() + "\n"
                         + bookList.get(i).getNamXB() + "\n" + bookList.get(i).getDonGia() + "\n"
-                        + bookList.get(i).getGioiThieu() + "\n");
+                        + bookList.get(i).getGioiThieu() + "\n --------------\n");
             }
             bookDataWriter.close();
             (new Controller0()).setAlert("Xuất dữ liệu thành công!");

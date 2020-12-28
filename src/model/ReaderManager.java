@@ -1,10 +1,16 @@
 package model;
 
+import org.apache.poi.ss.util.NumberToTextConverter;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
 import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.*;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 
 public class ReaderManager {
@@ -84,34 +90,21 @@ public class ReaderManager {
         }
     }
 
-    public ArrayList<Reader> insertReaderByFile() {
-        BufferedReader br = null;
+    public ArrayList<Reader> insertReaderByFile() throws IOException {
         ArrayList<Reader> insertList = new ArrayList<>();
-        try {
-            br = new BufferedReader(new FileReader(readerFileURL));
-            String maDG, tenDG, gioiTinh, CMND, email, dienThoai;
-            LocalDate ngaySinh;
-            int n = Integer.parseInt(br.readLine());
-            for (int i = 0; i < n; i++) {
-                maDG = br.readLine();
-                tenDG = br.readLine();
-                gioiTinh = br.readLine();
-                ngaySinh = LocalDate.parse(br.readLine());
-                CMND = br.readLine();
-                email = br.readLine();
-                dienThoai = br.readLine();
-                Reader tmp = new Reader(maDG, tenDG, gioiTinh, ngaySinh, CMND, email, dienThoai);
-                insertList.add(tmp);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                br.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return insertList;
+        FileInputStream file = new FileInputStream(readerFileURL);
+        XSSFWorkbook workbook = new XSSFWorkbook(file);
+        XSSFSheet sheet = workbook.getSheetAt(0);
+        int R = sheet.getLastRowNum();
+        for (int i = 1; i <= R; i++) {
+            Reader tmpReader = new Reader(sheet.getRow(i).getCell(0).toString(), sheet.getRow(i).getCell(1).toString(),
+                    sheet.getRow(i).getCell(2).toString(), (sheet.getRow(i).getCell(3).getDateCellValue()).toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
+                    sheet.getRow(i).getCell(4).toString(), sheet.getRow(i).getCell(5).toString(),
+                    sheet.getRow(i).getCell(6).toString());
+            insertList.add(tmpReader);
+
         }
+        workbook.close();
+        return insertList;
     }
 }

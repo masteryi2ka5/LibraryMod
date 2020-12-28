@@ -7,12 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import model.BorrLend;
-import model.BorrLendManager;
-import model.Librarian;
-import model.LibrarianManager;
-import model.Reader;
-import model.ReaderManager;
+import model.*;
 
 import java.net.URL;
 import java.sql.Date;
@@ -93,27 +88,16 @@ public class Controller2 implements Initializable {
         borrLendKeyword.setText("");
     }
 
-    public void addNewBorrLend(ActionEvent event) throws SQLException {
+    public void addNewBorrLend() throws SQLException {
         BorrLend tmp = this.getBorrLendInfo();
-
-        try {
-            String insQuery = "INSERT INTO dbo.MuonTra VALUES(?, ?, ?, ?, ?, ?)";
-            PreparedStatement pstm = this.borrLendManager.cnn.prepareStatement(insQuery, 1);
-            pstm.setString(1, tmp.getMaMT());
-            pstm.setString(2, tmp.getMaDG());
-            pstm.setString(3, tmp.getMaTT());
-            pstm.setDate(4, Date.valueOf(tmp.getNgayMuon()));
-            pstm.setDate(5, Date.valueOf(tmp.getNgayHenTra()));
-            pstm.setInt(6, tmp.getTienCoc());
-            pstm.execute();
+        if (borrLendManager.addNewBorrLend(tmp)) {
             this.borrLendList.add(tmp);
             this.tableViewBorrLend.setItems(this.borrLendList);
             (new Controller0()).setAlert("Thêm thành công!");
-        } catch (SQLException var5) {
-            var5.printStackTrace();
+        }
+        else {
             (new Controller0()).setAlert("Thêm thất bại!");
         }
-
         this.clearBorrLendInfo();
     }
 
@@ -126,6 +110,20 @@ public class Controller2 implements Initializable {
         int tien_coc = Integer.parseInt(this.deposit.getText());
         BorrLend tmp = new BorrLend(ma_muon_tra, ma_doc_gia, ma_thu_thu, ngay_muon, ngay_hen_tra, tien_coc);
         return tmp;
+    }
+
+    public void updateBorrLend() {
+        BorrLend tmp = getBorrLendInfo();
+        if (borrLendManager.updateBorrLend(tmp)) {
+            int i = 0;
+            while (!borrLendList.get(i).getMaMT().equals(tmp.getMaMT()))
+                i++;
+            borrLendList.set(i, tmp);
+            updateBorrLendTable();
+            clearBorrLendInfo();
+            (new Controller0()).setAlert("Sửa thành công!");
+        } else
+            (new Controller0()).setAlert("Sửa thất bại");
     }
 
     void clearBorrLendInfo() {
